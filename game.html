@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Take a quick HackMerced 2026 memory-match break.">
+    <title>Play | HackMerced 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="website.html">HM<span>.</span></a>
+        <nav aria-label="Main navigation">
+            <a href="website.html">Home</a>
+            <a href="highlights.html">Highlights</a>
+            <a href="stickers.html">The Sticker Table</a>
+            <a class="active" href="game.html" aria-current="page">Play</a>
+        </nav>
+    </header>
+
+    <main class="content-page game-page">
+        <p class="section-kicker">03 / HackMerced 2026</p>
+        <h1>Ready, set,<br>match.</h1>
+        <p class="page-intro">A tiny brain break between big ideas. Match all six pairs before the 45-second sprint runs out.</p>
+
+        <section class="game-panel" aria-label="HackMerced memory match">
+            <div class="game-toolbar">
+                <div class="game-stats" aria-label="Game stats">
+                    <p><span>Time</span><strong id="game-time">45s</strong></p>
+                    <p><span>Moves</span><strong id="game-moves">0</strong></p>
+                    <p><span>Pairs</span><strong id="game-pairs">0 / 6</strong></p>
+                </div>
+                <button class="button button-primary game-start" id="game-start" type="button">Start game</button>
+            </div>
+            <p class="game-message" id="game-message" aria-live="polite">Press start when you’re ready.</p>
+            <div class="game-board" id="game-board" aria-label="Memory match cards"></div>
+        </section>
+        <a class="back-link" href="website.html">← Back to the recap</a>
+    </main>
+
+    <footer class="site-footer"><span>HackMerced Recap</span><span>Make something meaningful.</span></footer>
+</body>
+</html>
