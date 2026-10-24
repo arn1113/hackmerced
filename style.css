@@ -286,6 +286,80 @@ p {
 	object-fit: contain;
 }
 
+.schedule-page {
+	padding-top: 72px;
+}
+
+.schedule-layout {
+	display: grid;
+	grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+	gap: clamp(20px, 3vw, 36px);
+	align-items: flex-start;
+}
+
+.schedule-gallery {
+	display: grid;
+	gap: 18px;
+}
+
+.schedule-gallery img {
+	display: block;
+	width: 100%;
+	border: 1px solid var(--line);
+	background: #e9ebe5;
+	object-fit: cover;
+}
+
+.schedule-gallery img:first-child {
+	height: clamp(280px, 38vw, 410px);
+}
+
+.schedule-gallery img:last-child {
+	height: clamp(170px, 22vw, 240px);
+}
+
+.schedule-list {
+	display: grid;
+	gap: 16px;
+}
+
+.schedule-row {
+	display: grid;
+	grid-template-columns: 150px minmax(0, 1fr);
+	gap: 18px;
+	padding: 18px 0;
+	border-top: 1px solid var(--line);
+}
+
+.schedule-row:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.schedule-time {
+	color: var(--orange);
+	font-size: 0.74rem;
+	font-weight: 900;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.schedule-copy h2 {
+	margin: 0 0 8px;
+	font-size: 1.18rem;
+}
+
+.schedule-copy p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.94rem;
+	line-height: 1.7;
+}
+
+.meal-row .schedule-copy h2 {
+	color: var(--ink);
+}
+
 .photo-caption {
 	display: flex;
 	justify-content: space-between;
@@ -494,6 +568,15 @@ p {
 		padding: 22px 0;
 		border-left: 0;
 		border-bottom: 1px solid var(--line);
+	}
+
+	.schedule-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.schedule-row {
+		grid-template-columns: 1fr;
+		gap: 8px;
 	}
 
 	.photo-caption {
