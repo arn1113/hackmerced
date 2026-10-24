@@ -25,15 +25,27 @@
         <h1>Take a little<br>brain break.</h1>
         <p class="page-intro">Pick a mini-game, challenge your focus, and take a breather between big ideas.</p>
 
+        <div class="difficulty-control">
+            <label for="game-difficulty">Difficulty</label>
+            <select id="game-difficulty">
+                <option value="easy">Chill</option>
+                <option value="medium" selected>Standard</option>
+                <option value="hard">Expert</option>
+            </select>
+            <p id="difficulty-description">A balanced challenge for your next break.</p>
+        </div>
+
         <nav class="game-picker" aria-label="Choose a game">
             <button class="game-choice is-selected" type="button" data-game="memory" aria-pressed="true">Memory match</button>
             <button class="game-choice" type="button" data-game="reaction" aria-pressed="false">Reaction test</button>
             <button class="game-choice" type="button" data-game="scramble" aria-pressed="false">Word scramble</button>
+            <button class="game-choice" type="button" data-game="trivia" aria-pressed="false">Code trivia</button>
+            <button class="game-choice" type="button" data-game="typing" aria-pressed="false">Typing sprint</button>
         </nav>
 
         <section class="game-panel" id="game-memory" aria-label="HackMerced memory match">
             <h2 class="mini-game-title">Memory match</h2>
-            <p class="mini-game-description">Match all six pairs before the 45-second sprint runs out.</p>
+            <p class="mini-game-description" id="memory-description">Match all six pairs before the 45-second sprint runs out.</p>
             <div class="game-toolbar">
                 <div class="game-stats" aria-label="Game stats">
                     <p><span>Time</span><strong id="game-time">45s</strong></p>
@@ -63,6 +75,7 @@
                 <div class="game-stats" aria-label="Game stats">
                     <p><span>Time</span><strong id="scramble-time">45s</strong></p>
                     <p><span>Score</span><strong id="scramble-score">0</strong></p>
+                    <p><span>Skips</span><strong id="scramble-skips">0</strong></p>
                 </div>
                 <button class="button button-primary game-start" id="scramble-start" type="button">Start round</button>
             </div>
@@ -72,9 +85,46 @@
                 <div class="scramble-input-row">
                     <input id="scramble-answer" name="answer" type="text" autocomplete="off" autocapitalize="characters" disabled>
                     <button class="button button-primary game-start" id="scramble-submit" type="submit" disabled>Submit</button>
+                    <button class="button game-secondary" id="scramble-skip" type="button" disabled>Skip word</button>
                 </div>
             </form>
             <p class="game-message" id="scramble-message" aria-live="polite">Words from a weekend of making.</p>
+        </section>
+
+        <section class="game-panel" id="game-trivia" aria-label="HackMerced code trivia" hidden>
+            <h2 class="mini-game-title">Code trivia</h2>
+            <p class="mini-game-description">Pick the best answer. See how many you can get right in a row.</p>
+            <div class="game-toolbar">
+                <div class="game-stats" aria-label="Trivia stats">
+                    <p><span>Question</span><strong id="trivia-progress">0 / 5</strong></p>
+                    <p><span>Score</span><strong id="trivia-score">0</strong></p>
+                </div>
+                <button class="button button-primary game-start" id="trivia-start" type="button">Start quiz</button>
+            </div>
+            <p class="trivia-question" id="trivia-question" aria-live="polite">Ready to test your dev knowledge?</p>
+            <div class="trivia-options" id="trivia-options"></div>
+            <p class="game-message" id="trivia-message" aria-live="polite">Choose a difficulty, then start the quiz.</p>
+        </section>
+
+        <section class="game-panel" id="game-typing" aria-label="HackMerced typing sprint" hidden>
+            <h2 class="mini-game-title">Typing sprint</h2>
+            <p class="mini-game-description">Type the project-building phrase as quickly and accurately as you can.</p>
+            <div class="game-toolbar">
+                <div class="game-stats" aria-label="Typing stats">
+                    <p><span>Time</span><strong id="typing-time">30s</strong></p>
+                    <p><span>Completed</span><strong id="typing-score">0</strong></p>
+                </div>
+                <button class="button button-primary game-start" id="typing-start" type="button">Start sprint</button>
+            </div>
+            <p class="typing-prompt" id="typing-prompt">Your phrase will appear here.</p>
+            <form class="typing-form" id="typing-form">
+                <label for="typing-input">Type the phrase</label>
+                <div class="scramble-input-row">
+                    <input id="typing-input" type="text" autocomplete="off" disabled>
+                    <button class="button button-primary game-start" id="typing-submit" type="submit" disabled>Check</button>
+                </div>
+            </form>
+            <p class="game-message" id="typing-message" aria-live="polite">Ready, set, type.</p>
         </section>
         <a class="back-link" href="website.html">← Back to the recap</a>
     </main>
