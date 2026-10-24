@@ -287,73 +287,120 @@ p {
 }
 
 .schedule-page {
-	padding-top: 72px;
+	padding-top: 28px;
+	padding-bottom: 38px;
+}
+
+.schedule-page .section-kicker {
+	margin-bottom: 10px;
+}
+
+.schedule-page h1 {
+	margin-bottom: 10px;
+	font-size: clamp(2rem, 4vw, 3.25rem);
 }
 
 .schedule-layout {
 	display: grid;
-	grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
-	gap: clamp(20px, 3vw, 36px);
-	align-items: flex-start;
+	gap: 24px;
+}
+
+.schedule-page .page-intro {
+	margin-bottom: 20px;
+	font-size: 0.92rem;
+	line-height: 1.5;
+}
+
+.workshop-note {
+	display: grid;
+	grid-template-columns: 104px minmax(0, 1fr);
+	gap: 14px;
+	align-items: start;
+	margin-bottom: 22px;
+	padding: 16px 20px;
+	border-left: 4px solid var(--orange);
+	background: #e9ebe5;
+}
+
+.workshop-time {
+	padding-top: 3px;
+	color: var(--orange);
+	font-size: 0.82rem;
+	font-weight: 900;
+	font-variant-numeric: tabular-nums;
+}
+
+.workshop-note .section-kicker {
+	margin-bottom: 5px;
+	font-size: 0.68rem;
+}
+
+.workshop-note h2 {
+	margin: 0 0 5px;
+	font-size: 1.05rem;
+}
+
+.workshop-note div > p:last-child {
+	max-width: 760px;
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.86rem;
+	line-height: 1.5;
 }
 
 .schedule-gallery {
 	display: grid;
-	gap: 18px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
 }
 
 .schedule-gallery img {
 	display: block;
 	width: 100%;
+	max-height: 300px;
 	border: 1px solid var(--line);
 	background: #e9ebe5;
-	object-fit: cover;
-}
-
-.schedule-gallery img:first-child {
-	height: clamp(280px, 38vw, 410px);
-}
-
-.schedule-gallery img:last-child {
-	height: clamp(170px, 22vw, 240px);
+	object-fit: contain;
 }
 
 .schedule-list {
 	display: grid;
-	gap: 16px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	column-gap: clamp(20px, 4vw, 52px);
 }
 
 .schedule-row {
 	display: grid;
-	grid-template-columns: 150px minmax(0, 1fr);
-	gap: 18px;
-	padding: 18px 0;
+	grid-template-columns: 104px minmax(0, 1fr);
+	gap: 14px;
+	align-items: start;
+	min-height: 96px;
+	padding: 14px 0;
 	border-top: 1px solid var(--line);
 }
 
 .schedule-row:first-child {
 	border-top: 0;
-	padding-top: 0;
 }
 
 .schedule-time {
 	color: var(--orange);
-	font-size: 0.74rem;
+	font-size: 0.82rem;
 	font-weight: 900;
-	letter-spacing: 0.08em;
+	font-variant-numeric: tabular-nums;
 	text-transform: uppercase;
 }
 
 .schedule-copy h2 {
-	margin: 0 0 8px;
-	font-size: 1.18rem;
+	margin: 0 0 5px;
+	font-size: 1.05rem;
 }
 
 .schedule-copy p {
 	margin: 0;
 	color: var(--muted);
-	font-size: 0.94rem;
-	line-height: 1.7;
+	font-size: 0.86rem;
+	line-height: 1.5;
 }
 
 .meal-row .schedule-copy h2 {
@@ -370,7 +417,7 @@ p {
 
 .back-link {
 	display: inline-block;
-	margin-top: 42px;
+	margin-top: 24px;
 	font-size: 0.9rem;
 	font-weight: 700;
 	text-decoration-color: var(--orange);
@@ -697,9 +744,28 @@ p {
 		grid-template-columns: 1fr;
 	}
 
-	.schedule-row {
+	.schedule-list {
 		grid-template-columns: 1fr;
-		gap: 8px;
+	}
+
+	.schedule-gallery {
+		grid-template-columns: 1fr;
+	}
+
+	.schedule-gallery img {
+		max-height: 260px;
+	}
+
+	.schedule-row {
+		grid-template-columns: 88px minmax(0, 1fr);
+		gap: 12px;
+		min-height: 82px;
+	}
+
+	.workshop-note {
+		grid-template-columns: 1fr;
+		gap: 7px;
+		padding: 15px;
 	}
 
 	.photo-caption {
