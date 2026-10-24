@@ -348,6 +348,84 @@ p {
 	line-height: 1.5;
 }
 
+.workshop-section {
+	margin-bottom: 28px;
+}
+
+.workshop-section-heading {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 24px;
+	margin-bottom: 12px;
+}
+
+.workshop-section-heading .section-kicker {
+	margin-bottom: 5px;
+}
+
+.workshop-section-heading h2 {
+	margin: 0;
+	font-size: 1.45rem;
+}
+
+.workshop-section-heading > p {
+	max-width: 420px;
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.82rem;
+	line-height: 1.5;
+}
+
+.workshop-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 10px;
+}
+
+.workshop-card {
+	padding: 14px;
+	border: 1px solid var(--line);
+	background: #ebece5;
+}
+
+.workshop-card-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 12px;
+	margin-bottom: 10px;
+	color: var(--orange);
+	font-size: 0.72rem;
+	font-weight: 900;
+	font-variant-numeric: tabular-nums;
+}
+
+.workshop-card-meta span {
+	color: var(--muted);
+	font-weight: 700;
+}
+
+.workshop-card h3 {
+	margin: 0 0 7px;
+	font-size: 0.96rem;
+	line-height: 1.35;
+}
+
+.workshop-card > p:not(.workshop-card-meta) {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.8rem;
+	line-height: 1.5;
+}
+
+.workshop-card .workshop-host {
+	margin-top: 12px !important;
+	padding-top: 9px;
+	border-top: 1px solid var(--line);
+	font-size: 0.72rem !important;
+	font-weight: 700;
+}
+
 .schedule-gallery {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -744,6 +822,10 @@ p {
 		grid-template-columns: 1fr;
 	}
 
+	.workshop-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
 	.schedule-list {
 		grid-template-columns: 1fr;
 	}
@@ -766,6 +848,16 @@ p {
 		grid-template-columns: 1fr;
 		gap: 7px;
 		padding: 15px;
+	}
+
+	.workshop-section-heading {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.workshop-grid {
+		grid-template-columns: 1fr;
 	}
 
 	.photo-caption {
