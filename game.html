@@ -22,10 +22,18 @@
 
     <main class="content-page game-page">
         <p class="section-kicker">03 / HackMerced 2026</p>
-        <h1>Ready, set,<br>match.</h1>
-        <p class="page-intro">A tiny brain break between big ideas. Match all six pairs before the 45-second sprint runs out.</p>
+        <h1>Take a little<br>brain break.</h1>
+        <p class="page-intro">Pick a mini-game, challenge your focus, and take a breather between big ideas.</p>
 
-        <section class="game-panel" aria-label="HackMerced memory match">
+        <nav class="game-picker" aria-label="Choose a game">
+            <button class="game-choice is-selected" type="button" data-game="memory" aria-pressed="true">Memory match</button>
+            <button class="game-choice" type="button" data-game="reaction" aria-pressed="false">Reaction test</button>
+            <button class="game-choice" type="button" data-game="scramble" aria-pressed="false">Word scramble</button>
+        </nav>
+
+        <section class="game-panel" id="game-memory" aria-label="HackMerced memory match">
+            <h2 class="mini-game-title">Memory match</h2>
+            <p class="mini-game-description">Match all six pairs before the 45-second sprint runs out.</p>
             <div class="game-toolbar">
                 <div class="game-stats" aria-label="Game stats">
                     <p><span>Time</span><strong id="game-time">45s</strong></p>
@@ -36,6 +44,37 @@
             </div>
             <p class="game-message" id="game-message" aria-live="polite">Press start when you’re ready.</p>
             <div class="game-board" id="game-board" aria-label="Memory match cards"></div>
+        </section>
+
+        <section class="game-panel" id="game-reaction" aria-label="HackMerced reaction test" hidden>
+            <h2 class="mini-game-title">Reaction test</h2>
+            <p class="mini-game-description">Wait for the signal, then tap as quickly as you can. Jumping the gun means a restart!</p>
+            <div class="reaction-game">
+                <button class="button button-primary game-start" id="reaction-start" type="button">Start test</button>
+                <button class="reaction-pad" id="reaction-pad" type="button" disabled>Ready when you are</button>
+                <p class="game-message" id="reaction-message" aria-live="polite">How quick are your reflexes?</p>
+            </div>
+        </section>
+
+        <section class="game-panel" id="game-scramble" aria-label="HackMerced word scramble" hidden>
+            <h2 class="mini-game-title">Word scramble</h2>
+            <p class="mini-game-description">Unscramble HackMerced-inspired words before the 45-second clock runs out.</p>
+            <div class="game-toolbar">
+                <div class="game-stats" aria-label="Game stats">
+                    <p><span>Time</span><strong id="scramble-time">45s</strong></p>
+                    <p><span>Score</span><strong id="scramble-score">0</strong></p>
+                </div>
+                <button class="button button-primary game-start" id="scramble-start" type="button">Start round</button>
+            </div>
+            <p class="scramble-letters" id="scramble-letters" aria-live="polite">Ready to unscramble?</p>
+            <form class="scramble-form" id="scramble-form">
+                <label for="scramble-answer">Your guess</label>
+                <div class="scramble-input-row">
+                    <input id="scramble-answer" name="answer" type="text" autocomplete="off" autocapitalize="characters" disabled>
+                    <button class="button button-primary game-start" id="scramble-submit" type="submit" disabled>Submit</button>
+                </div>
+            </form>
+            <p class="game-message" id="scramble-message" aria-live="polite">Words from a weekend of making.</p>
         </section>
         <a class="back-link" href="website.html">← Back to the recap</a>
     </main>
