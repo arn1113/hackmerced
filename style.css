@@ -311,10 +311,54 @@ p {
 	margin-bottom: 32px;
 }
 
+.game-picker {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 18px;
+}
+
+.game-choice {
+	padding: 11px 16px;
+	border: 1px solid var(--line);
+	color: var(--muted);
+	background: transparent;
+	font: inherit;
+	font-size: 0.85rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.game-choice:hover,
+.game-choice.is-selected {
+	border-color: var(--ink);
+	color: white;
+	background: var(--ink);
+}
+
+.game-choice:focus-visible,
+.reaction-pad:focus-visible,
+.scramble-form input:focus-visible {
+	outline: 3px solid var(--orange);
+	outline-offset: 3px;
+}
+
 .game-panel {
 	padding: clamp(18px, 4vw, 36px);
 	border: 1px solid var(--line);
 	background: #ebece5;
+}
+
+.mini-game-title {
+	margin-bottom: 8px;
+	font-size: 1.5rem;
+}
+
+.mini-game-description {
+	margin-bottom: 24px;
+	color: var(--muted);
+	font-size: 0.92rem;
+	line-height: 1.6;
 }
 
 .game-toolbar {
@@ -440,8 +484,87 @@ p {
 	background: #e8efcf;
 }
 
+.reaction-game {
+	display: grid;
+	justify-items: start;
+	gap: 18px;
+}
+
+.reaction-pad {
+	display: grid;
+	width: 100%;
+	min-height: 190px;
+	place-items: center;
+	border: 1px solid var(--line);
+	color: var(--ink);
+	background: #f8f8f3;
+	font: inherit;
+	font-size: clamp(1.15rem, 4vw, 1.7rem);
+	font-weight: 800;
+	cursor: pointer;
+	transition: color 160ms ease, background-color 160ms ease;
+}
+
+.reaction-pad:disabled {
+	cursor: default;
+}
+
+.reaction-pad.is-go {
+	border-color: #739632;
+	color: #172b36;
+	background: var(--green);
+}
+
+.reaction-game .game-message {
+	margin: 0;
+}
+
+.scramble-letters {
+	display: grid;
+	min-height: 120px;
+	place-items: center;
+	margin: 22px 0;
+	padding: 18px;
+	border: 1px dashed #b6c2a6;
+	color: var(--orange);
+	background: #f8f8f3;
+	font-size: clamp(1.5rem, 6vw, 2.7rem);
+	font-weight: 900;
+	letter-spacing: 0.18em;
+	text-align: center;
+}
+
+.scramble-form label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 0.82rem;
+	font-weight: 700;
+}
+
+.scramble-input-row {
+	display: flex;
+	gap: 10px;
+}
+
+.scramble-form input {
+	width: 100%;
+	min-width: 0;
+	padding: 0 14px;
+	border: 1px solid var(--line);
+	color: var(--ink);
+	background: #f8f8f3;
+	font: inherit;
+	font-size: 1rem;
+	text-transform: uppercase;
+}
+
+.scramble-form input:disabled {
+	opacity: 0.65;
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.game-card {
+	.game-card,
+	.reaction-pad {
 		transition: none;
 	}
 }
@@ -512,5 +635,14 @@ p {
 
 	.game-card {
 		min-height: 104px;
+	}
+
+	.game-choice {
+		padding: 10px 12px;
+		font-size: 0.78rem;
+	}
+
+	.reaction-pad {
+		min-height: 150px;
 	}
 }
