@@ -68,11 +68,13 @@ let scrambleSecondsLeft = difficulties[difficultySelect.value].seconds;
 let scrambleScore = 0;
 let scrambleSkips = 0;
 let currentWord = "";
+let scrambleWordDeck = [];
 let scrambleActive = false;
 let triviaQuestions = [];
 let triviaIndex = 0;
 let triviaScore = 0;
 let triviaActive = false;
+let previousTriviaAnswerPosition = -1;
 let typingTimerId = null;
 let typingSecondsLeft = difficulties[difficultySelect.value].seconds;
 let typingScore = 0;
@@ -83,14 +85,26 @@ const scrambleWords = [
     { word: "TEAM", level: "easy" },
     { word: "IDEA", level: "easy" },
     { word: "BUILD", level: "easy" },
+    { word: "PLAN", level: "easy" },
+    { word: "BUG", level: "easy" },
+    { word: "TEST", level: "easy" },
+    { word: "SHIP", level: "easy" },
     { word: "CREATE", level: "medium" },
     { word: "DEBUG", level: "medium" },
     { word: "INNOVATE", level: "medium" },
     { word: "TEAMWORK", level: "medium" },
+    { word: "FRONTEND", level: "medium" },
+    { word: "DATABASE", level: "medium" },
+    { word: "FUNCTION", level: "medium" },
+    { word: "DESIGNER", level: "medium" },
     { word: "PROTOTYPE", level: "hard" },
     { word: "JAVASCRIPT", level: "hard" },
     { word: "HACKATHON", level: "hard" },
     { word: "COLLABORATE", level: "hard" },
+    { word: "ALGORITHM", level: "hard" },
+    { word: "ACCESSIBILITY", level: "hard" },
+    { word: "DEPLOYMENT", level: "hard" },
+    { word: "ASYNCHRONOUS", level: "hard" },
 ];
 const typingPhrases = {
     easy: ["Build something cool.", "Ideas become projects."],
@@ -399,18 +413,17 @@ function makeScrambledWord(word) {
 }
 
 function nextScrambleWord() {
-    const level = difficultySelect.value;
-    const availableWords = scrambleWords.filter((entry) => (
-        level === "easy" ? entry.level === "easy" :
-            level === "medium" ? entry.level === "medium" : entry.level === "hard"
-    ));
-    currentWord = availableWords[Math.floor(Math.random() * availableWords.length)].word;
+    if (scrambleWordDeck.length === 0) {
+        finishScrambleRound("You unscrambled every unique word in this round. Great work!");
+        return;
+    }
+    currentWord = scrambleWordDeck.pop();
     scrambleLetters.textContent = makeScrambledWord(currentWord);
     scrambleAnswer.value = "";
     scrambleAnswer.focus();
 }
 
-function finishScrambleRound() {
+function finishScrambleRound(resultMessage) {
     window.clearInterval(scrambleTimerId);
     scrambleTimerId = null;
     scrambleActive = false;
@@ -418,8 +431,9 @@ function finishScrambleRound() {
     scrambleSubmit.disabled = true;
     scrambleSkip.disabled = true;
     scrambleStart.textContent = "Play again";
-    scrambleLetters.textContent = "Time!";
-    scrambleMessage.textContent = `Round over! You solved ${scrambleScore} ${scrambleScore === 1 ? "word" : "words"}.`;
+    scrambleLetters.textContent = resultMessage ? "Round complete!" : "Time!";
+    scrambleMessage.textContent = resultMessage ??
+        `Round over! You solved ${scrambleScore} ${scrambleScore === 1 ? "word" : "words"}.`;
 }
 
 function startScrambleRound() {
@@ -428,6 +442,9 @@ function startScrambleRound() {
     scrambleScore = 0;
     scrambleSkips = 0;
     scrambleActive = true;
+    scrambleWordDeck = shuffle(scrambleWords
+        .filter((entry) => entry.level === difficultySelect.value)
+        .map((entry) => entry.word));
     scrambleTime.textContent = `${scrambleSecondsLeft}s`;
     scrambleScoreDisplay.textContent = String(scrambleScore);
     scrambleSkipsDisplay.textContent = String(scrambleSkips);
@@ -470,7 +487,12 @@ function showTriviaQuestion() {
     triviaProgress.textContent = `${triviaIndex + 1} / ${triviaQuestions.length}`;
     triviaQuestion.textContent = question.question;
     triviaOptions.replaceChildren();
-    question.options.forEach((option) => {
+    const correctPositionChoices = [0, 1, 2].filter((position) => position !== previousTriviaAnswerPosition);
+    const correctPosition = correctPositionChoices[Math.floor(Math.random() * correctPositionChoices.length)];
+    previousTriviaAnswerPosition = correctPosition;
+    const options = shuffle(question.options.filter((option) => option !== question.answer));
+    options.splice(correctPosition, 0, question.answer);
+    options.forEach((option) => {
         const button = document.createElement("button");
         button.className = "trivia-option";
         button.type = "button";
@@ -490,6 +512,7 @@ function startTriviaRound() {
     triviaScore = 0;
     triviaActive = true;
     triviaAnswered = false;
+    previousTriviaAnswerPosition = -1;
     triviaScoreDisplay.textContent = "0";
     showTriviaQuestion();
 }
